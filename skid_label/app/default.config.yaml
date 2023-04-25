@@ -1,0 +1,12 @@
+# Where the label files will be created.
+LABEL_DIR : 'C:/io/labels'
+PRINTER_NAME : 'ZDesigner GX430t'
+DOCUMENT_TYPE : 'pdf'
+
+# PrintIt API.
+PRINTIT_URL : 'http://localhost:7200/print/from-pdf'
+
+# Logging config.
+LOGGER_NAME : 'app_name'
+LOGGING_CONFIG : 'config.json'
+LOG_FILE : '/var/log/app.log'

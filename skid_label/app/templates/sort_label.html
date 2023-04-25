@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="static/styles.css">
+
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKID LABEL</title>
+    <script>
+    
+    function insertDate() {
+        dateVar = sessionStorage.getItem('dateVar')
+
+        if (sessionStorage.getItem('dateVar') === null){
+            var dateVar = new Date();
+        } else {
+            let splt = sessionStorage.getItem('dateVar').split("-")
+            var dateVar = new Date(splt[0], splt[1], splt[2], 0, 0, 0)
+        }
+
+        let dayVar = (dateVar.getDate()).toString().padStart(2, '0');
+        let yearVar = dateVar.getFullYear();
+        let monthVar = (dateVar.getMonth()).toString().padStart(2, '0');
+        document.getElementById('date').value = `${yearVar}-${monthVar}-${dayVar}`;
+    }
+
+    function updateDateVar() {
+        sessionStorage.setItem('dateVar', document.getElementById('date').value);
+    }
+
+    function printLabel() {
+
+        var formdata = new FormData();
+
+        formdata.append("product", document.getElementById('product').value);
+        formdata.append("date", document.getElementById('date').value);
+        formdata.append("label_count", document.getElementById('label_count').value);
+
+        var requestOptions = {
+            method: 'POST',
+            body:   formdata,
+
+        }
+
+        fetch("/sort/print", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
+    }
+    </script>
+
+</head>
+
+<body onload="insertDate()">
+    <div class="header_div">
+        <h1>SKID LABEL</h1>
+    </div>    
+    <form id="input_form">
+        <label for="product" autocomplete="on">Product</label><br>
+        <input type="text" id="product" name="product"><br>
+        
+        <label for="date">Date</label><br>
+        <input type="date" autocomplete="on" id="date" onchange="updateDateVar()"><br>
+        
+        <label for="label_count">Number of labels</label><br>
+        <input type="number" 
+        id="label_count" 
+        name="label_count"
+        min="1" 
+        max="10" 
+        autocomplete="on"
+        value="1"><br>
+        
+        <div class="print_button">
+            <input type="submit" value="Print" onclick="printLabel()">
+        </div>
+    </form>
+    <div class="link_button">
+        <button onclick="window.location.href='/hoh'" style="float: left;">
+        Make Hands of Hope skid label
+        </button>
+    </div>
+</body>
+</html>

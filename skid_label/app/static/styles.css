@@ -1,0 +1,51 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    text-align: center;
+    vertical-align: auto;
+}
+
+label {
+    font-size: larger;
+}
+
+input, select {
+    margin-bottom: 20px;
+    margin-top: 8px;
+    font-size: x-large;
+}
+
+html, body {
+    height: 100%;
+}
+
+.header_div {
+    padding-top: 50px;
+    height: 20%;
+    vertical-align: middle;
+}
+
+.inputs {
+    height: 55%;
+    margin-bottom: 25px;
+}
+
+.print_button {
+    height: 25%;
+}
+
+.link_button {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+input:active, input:focus,
+button:active, button:focus,
+select:active, select:focus
+ {
+    border-width: 3px;
+    border-color: rgb(14, 90, 233);
+    border-radius: 6px;
+    background-color: rgb(200, 214, 240);
+}
